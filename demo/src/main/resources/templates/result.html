@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Email Metadata Result</title>
+    <!-- style -->
+    <!-- <link rel="stylesheet" href="result.css"> -->
+    <style>
+      /* Add some magic! */
+      @keyframes rainbow {
+        0% {
+          color: red;
+        }
+        25% {
+          color: orange;
+        }
+        50% {
+          color: yellow;
+        }
+        75% {
+          color: green;
+        }
+        100% {
+          color: blue;
+        }
+      }
+
+      /* Style for the heading */
+      h1 {
+        color: #333;
+        /* font-size: 24px; */
+        text-align: center;
+        margin-bottom: 20px;
+        animation: rainbow 5s infinite;
+      }
+
+      /* Style for the result text */
+      p {
+        color: #666;
+        font-size: 18px;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      /* Style for the extracted data */
+      span {
+        color: #4caf50;
+        font-weight: bold;
+      }
+
+      /* Background and container styling */
+      body {
+        background-color: rgba(176, 168, 165, 0.896);
+        margin: 0;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 400px;
+        height: 200px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        margin-top: 50px;
+        border-radius: 10px;
+      }
+
+      /* Add some magic! */
+      @keyframes pulsate {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      span {
+        animation: pulsate 2s infinite;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Email Metadata Result</h1>
+      <!-- <p>My Name Is Akash Raj.</p> -->
+      <p>Category: <span th:text="${category}"></span></p>
+      <p>Extracted Date: <span th:text="${extractedData}"></span></p>
+      <p>Expiration Date: <span th:text="${expirationDate}"></span></p>
+      <p><span th:text="${messageToUser}"></span></p>
+    </div>
+  </body>
+</html>
