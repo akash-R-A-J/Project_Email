@@ -26,13 +26,13 @@ public class MailCategorizationService {
 
         for (String keyword : FORM_KEYWORDS_LOWER) {
             if (subjectLower.toLowerCase().contains(keyword) || bodyLower.toLowerCase().contains(keyword)) {
-                return "Form Mail";
+                return "Form";
             }
         }
 
         for (String keyword : MEETING_KEYWORDS_LOWER) {
             if (subjectLower.toLowerCase().contains(keyword) || bodyLower.toLowerCase().contains(keyword)) {
-                return "Meeting Mail";
+                return "Meeting";
             }
         }
 

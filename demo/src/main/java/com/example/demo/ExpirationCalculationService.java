@@ -12,11 +12,11 @@ public class ExpirationCalculationService {
         LocalDate expirationDate = null;
         LocalDate deadline = mail.getDeadline();
 
-        if (category == null || category.equals("Other") || (category.equals("Meeting Mail") && deadline == null)) {
+        if (category == null || category.equals("Other") || (category.equals("Meeting") && deadline == null)) {
             return expirationDate;
         }
 
-        if (category.equals("Meeting Mail")) {
+        if (category.equals("Meeting")) {
 
             try {
                 expirationDate = deadline.plusDays(2); // Add 2 day to the meeting date
@@ -24,7 +24,7 @@ public class ExpirationCalculationService {
                 e.printStackTrace();
             }
 
-        } else if (category.equals("Form Mail") || category.equals("Expiration Mail")) {
+        } else if (category.equals("Form") || category.equals("Expiration Mail")) {
 
             if (deadline != null) {
                 try {
