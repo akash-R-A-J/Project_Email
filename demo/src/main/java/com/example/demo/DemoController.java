@@ -33,8 +33,19 @@ public class DemoController {
 
         // Add the extracted data to the model
         model.addAttribute("category", mail.getCategory());
-        model.addAttribute("arrivalDate", mail.getArrivalDate().toString());
-        model.addAttribute("extractedData", mail.getMetadata().toString());
+
+        if (mail.getArrivalDate() != null) {
+            model.addAttribute("arrivalDate", mail.getArrivalDate());
+        } else {
+            model.addAttribute("arrivalDate", "Not Found");
+        }
+
+        if (mail.getMetadata() != null) {
+            model.addAttribute("extractedData", mail.getMetadata());
+        } else {
+            model.addAttribute("arrivalDate", "Not Found");
+        }
+
         model.addAttribute("expirationDate", mail.getExpirationDate());
         model.addAttribute("messageToUser", messageToUser);
 
