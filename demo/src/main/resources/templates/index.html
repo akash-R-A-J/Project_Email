@@ -1,11 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <!-- head -->
   <head>
     <meta charset="UTF-8" />
     <title>Email Metadata Extraction</title>
-    <!-- Style -->
-    <!-- <link rel="stylesheet" href="index.css"> -->
+    <!-- style -->
     <style>
       body {
         background-color: rgba(176, 168, 165, 0.896);
@@ -90,11 +90,20 @@
   <body>
     <h1>Email Metadata Extraction</h1>
 
-    <form action="/process" method="post">
+    <!-- <form action="/process" method="post">
       <label for="emailBody">Email Body:</label><br />
       <textarea id="emailBody" name="emailBody" rows="4" cols="50"></textarea
       ><br /><br />
       <input type="submit" value="Submit" />
-    </form>
+    </form> -->
+
+    <form action="/process" method="POST">
+      <label for="header">Email Header:</label>
+      <input type="text" name="emailHeader" placeholder="Email Header" id="header"> <br>
+      <!-- <input type="text" id="header" name="header" required><br> -->
+      <label for="emailBody">Email Body:</label>
+      <textarea id="emailBody" name="emailBody" rows="5" required></textarea><br>
+      <input type="submit" value="Extract Metadata">
+   </form>
   </body>
-</html>
+</html> 
