@@ -21,8 +21,10 @@ public class DemoController {
     @PostMapping("/process")
     public String processMail(@RequestParam("emailHeader") String emailHeader,
             @RequestParam("emailBody") String emailBody, Model model) {
-        // call the start function of MailManagementService to implement the logic
+
+        // allocation of MailManagementService object and others too
         MailManagementService managementService = new MailManagementService();
+
         // Perform logic to extract metadata from emailBody
         MailManagementService.Mail mail = managementService.processMail(emailHeader,
                 emailBody);
@@ -32,7 +34,7 @@ public class DemoController {
         // Add the extracted data to the model
         model.addAttribute("category", mail.getCategory());
         model.addAttribute("arrivalDate", mail.getArrivalDate().toString());
-        model.addAttribute("extractedData", mail.getDeadline().toString());
+        model.addAttribute("extractedData", mail.getMetadata().toString());
         model.addAttribute("expirationDate", mail.getExpirationDate());
         model.addAttribute("messageToUser", messageToUser);
 

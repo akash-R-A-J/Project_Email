@@ -9,7 +9,7 @@ public class DeadlineExtractionService {
     public LocalDate extractDeadline(String mailBody) {
         // Define a regular expression pattern to match both deadline and general date
         // formats
-        String datePattern = "\\b(?:deadline|due|date|time)\\s*:\\s*(\\d{4}-\\d{2}-\\d{2})\\b|" +
+        String datePattern = "\\b(?:deadline|due)\\s*:\\s*(\\d{4}-\\d{2}-\\d{2})\\b|" +
                 "\\b(?:\\d{1,2}-(?:January|February|March|April|May|June|July|August|September|October|November|December)(?:,)? \\d{4}|\\d{4}-\\d{2}-\\d{2}|\\d{2}-\\d{2}-\\d{4})\\b";
 
         // Create a pattern object and matcher to find the date in the form body

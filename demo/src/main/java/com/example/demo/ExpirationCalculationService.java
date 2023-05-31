@@ -45,7 +45,7 @@ public class ExpirationCalculationService {
 
     public LocalDate extractArrivalDate(String header) {
         String DATE_FORMAT = "yyyy-MM-dd";
-        String patternString = "\\b(?:deadline|due|date|time)\\s*:\\s*(\\d{4}-\\d{2}-\\d{2})\\b|" +
+        String patternString = "\\s*(\\d{4}-\\d{2}-\\d{2})\\b|" +
                 "\\b(?:\\d{1,2}-(?:January|February|March|April|May|June|July|August|September|October|November|December)(?:,)? \\d{4}|\\d{4}-\\d{2}-\\d{2}|\\d{2}-\\d{2}-\\d{4})\\b";
         Pattern pattern = Pattern.compile(patternString);
         Matcher matcher = pattern.matcher(header);

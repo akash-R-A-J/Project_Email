@@ -4,11 +4,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class MailManagementService {
     private MailCategorizationService mailCategory;
     private DeadlineExtractionService mailDeadline;
     private ExpirationCalculationService mailExpiration;
+    private MetadataExtractionService mailMetadata;
     private List<MailManagementService.Mail> mails; // keeps track of scheduled
     // mail to be deleted
 
@@ -16,6 +18,7 @@ public class MailManagementService {
         this.mails = new ArrayList<>();
         mailCategory = new MailCategorizationService();
         mailDeadline = new DeadlineExtractionService();
+        mailMetadata = new MetadataExtractionService();
         mailExpiration = new ExpirationCalculationService();
     }
 
@@ -32,6 +35,7 @@ public class MailManagementService {
     public void displayDetails(Mail mail) {
         System.out.println("Category : " + mail.getCategory());
         System.out.println("Arrival Date : " + mail.getArrivalDate());
+        System.out.println("Extracted Date : " + mail.getMetadata());
         System.out.println("Deadline : " + mail.getDeadline());
         System.out.println("Expiration Date : " + mail.getExpirationDate());
     }
@@ -42,6 +46,7 @@ public class MailManagementService {
 
         Mail mail = new Mail(category, deadline);
 
+        mail.setMetadata(mailMetadata.extractMetadata(mailBody));
         mail.setExpirationDate(mailExpiration.expirationCalculation(mail)); // expiration date
         mail.setArrivalDate(mailExpiration.extractArrivalDate(mailSubject)); // arrival date
 
@@ -57,13 +62,13 @@ public class MailManagementService {
     }
 
     public String scheduleDeletion() {
+
         LocalDate currentDate = LocalDate.now();
         Iterator<MailManagementService.Mail> iterator = mails.iterator();
 
         while (iterator.hasNext()) {
 
-            MailManagementService.Mail mail = iterator.next();
-            LocalDate expirationDate = mail.getExpirationDate();
+            LocalDate expirationDate = iterator.next().getExpirationDate();
 
             // this should be done in mail deletion service
             if (expirationDate != null) {
@@ -92,6 +97,7 @@ public class MailManagementService {
         private LocalDate deadline;
         private LocalDate expirationDate;
         private LocalDate arrivalDate;
+        private Map<String, String> metadata;
 
         public Mail(String category, LocalDate deadline) {
             this.category = category;
@@ -104,6 +110,14 @@ public class MailManagementService {
 
         public LocalDate getDeadline() {
             return this.deadline;
+        }
+
+        public void setMetadata(Map<String, String> metadata) {
+            this.metadata = metadata;
+        }
+
+        public Map<String, String> getMetadata() {
+            return this.metadata;
         }
 
         public void setArrivalDate(LocalDate arrivalDate) {
