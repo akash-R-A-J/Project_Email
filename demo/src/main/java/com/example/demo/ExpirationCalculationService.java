@@ -11,15 +11,20 @@ public class ExpirationCalculationService {
         String category = mail.getCategory();
         LocalDate expirationDate = null;
         LocalDate deadline = mail.getDeadline();
+        LocalDate extractedDate = mail.getMetadata();
 
-        if (category == null || category.equals("Other") || (category.equals("Meeting") && deadline == null)) {
+        if (category == null || category.equals("Other")) {
             return expirationDate;
         }
 
         if (category.equals("Meeting")) {
 
             try {
-                expirationDate = deadline.plusDays(2); // Add 2 day to the meeting date
+                if (deadline != null) {
+                    expirationDate = deadline.plusDays(2); // Add 2 day to the meeting date
+                } else if (extractedDate != null) {
+                    expirationDate = extractedDate.plusMonths(1); // add 1 month to the meeting date
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -43,12 +48,12 @@ public class ExpirationCalculationService {
         return expirationDate;
     }
 
-    public LocalDate extractArrivalDate(String header) {
+    public LocalDate extractDate(String subject) {
         String DATE_FORMAT = "yyyy-MM-dd";
         String patternString = "\\s*(\\d{4}-\\d{2}-\\d{2})\\b|" +
                 "\\b(?:\\d{1,2}-(?:January|February|March|April|May|June|July|August|September|October|November|December)(?:,)? \\d{4}|\\d{4}-\\d{2}-\\d{2}|\\d{2}-\\d{2}-\\d{4})\\b";
         Pattern pattern = Pattern.compile(patternString);
-        Matcher matcher = pattern.matcher(header);
+        Matcher matcher = pattern.matcher(subject);
         LocalDate arrivalDate = null;
 
         if (matcher.find()) {

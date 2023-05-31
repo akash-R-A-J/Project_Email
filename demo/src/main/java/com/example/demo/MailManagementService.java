@@ -4,13 +4,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 public class MailManagementService {
     private MailCategorizationService mailCategory;
     private DeadlineExtractionService mailDeadline;
     private ExpirationCalculationService mailExpiration;
-    private MetadataExtractionService mailMetadata;
     private List<MailManagementService.Mail> mails; // keeps track of scheduled
     // mail to be deleted
 
@@ -18,7 +16,6 @@ public class MailManagementService {
         this.mails = new ArrayList<>();
         mailCategory = new MailCategorizationService();
         mailDeadline = new DeadlineExtractionService();
-        mailMetadata = new MetadataExtractionService();
         mailExpiration = new ExpirationCalculationService();
     }
 
@@ -46,9 +43,9 @@ public class MailManagementService {
 
         Mail mail = new Mail(category, deadline);
 
-        mail.setMetadata(mailMetadata.extractMetadata(mailBody));
+        mail.setMetadata(mailExpiration.extractDate(mailBody));
         mail.setExpirationDate(mailExpiration.expirationCalculation(mail)); // expiration date
-        mail.setArrivalDate(mailExpiration.extractArrivalDate(mailSubject)); // arrival date
+        mail.setArrivalDate(mailExpiration.extractDate(mailSubject)); // arrival date
 
         addMail(mail); // add mail to the mail list
 
@@ -97,7 +94,7 @@ public class MailManagementService {
         private LocalDate deadline;
         private LocalDate expirationDate;
         private LocalDate arrivalDate;
-        private Map<String, String> metadata;
+        private LocalDate extractedDate;
 
         public Mail(String category, LocalDate deadline) {
             this.category = category;
@@ -112,12 +109,12 @@ public class MailManagementService {
             return this.deadline;
         }
 
-        public void setMetadata(Map<String, String> metadata) {
-            this.metadata = metadata;
+        public void setMetadata(LocalDate extractedDate) {
+            this.extractedDate = extractedDate;
         }
 
-        public Map<String, String> getMetadata() {
-            return this.metadata;
+        public LocalDate getMetadata() {
+            return this.extractedDate;
         }
 
         public void setArrivalDate(LocalDate arrivalDate) {
