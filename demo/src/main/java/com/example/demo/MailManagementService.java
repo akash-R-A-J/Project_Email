@@ -31,21 +31,30 @@ public class MailManagementService {
 
     public void displayDetails(Mail mail) {
         System.out.println("Category : " + mail.getCategory());
+        System.out.println("Flag : " + mail.getFlag());
         System.out.println("Arrival Date : " + mail.getArrivalDate());
         System.out.println("Extracted Date : " + mail.getMetadata());
-        System.out.println("Deadline : " + mail.getDeadline());
+        System.out.println("Deadline : " + mail.getDeadline()); // exact deadline from mail body
         System.out.println("Expiration Date : " + mail.getExpirationDate());
     }
 
+    // process only one mail
     public Mail processMail(String mailSubject, String mailBody) {
         String category = mailCategory.categorizeMail(mailSubject, mailBody); // category
         LocalDate deadline = mailDeadline.extractDeadline(mailBody); // deadline
 
         Mail mail = new Mail(category, deadline);
 
-        mail.setMetadata(mailExpiration.extractDate(mailBody));
+        mail.setMetadata(mailExpiration.extractDate(mailBody)); // extract date from body
+        mail.setArrivalDate(mailExpiration.extractDate(mailSubject)); // extract arrival date from mail subject
         mail.setExpirationDate(mailExpiration.expirationCalculation(mail)); // expiration date
-        mail.setArrivalDate(mailExpiration.extractDate(mailSubject)); // arrival date
+
+        // set flag to check if the current mail is already processed or not
+        if (deadline != null) {
+            mail.setFlag(1);
+        } else if (category == "other") {
+            mail.setFlag(2);
+        }
 
         addMail(mail); // add mail to the mail list
 
@@ -95,10 +104,20 @@ public class MailManagementService {
         private LocalDate expirationDate;
         private LocalDate arrivalDate;
         private LocalDate extractedDate;
+        private int flag; // a mail should passed only once
+        // initiate = 0, deadline = 1, others = 2;
 
         public Mail(String category, LocalDate deadline) {
             this.category = category;
             this.deadline = deadline;
+        }
+
+        public void setFlag(int flag) {
+            this.flag = flag;
+        }
+
+        public int getFlag() {
+            return this.flag;
         }
 
         public String getCategory() {

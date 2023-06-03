@@ -9,13 +9,14 @@ public class ExpirationCalculationService {
     public LocalDate expirationCalculation(MailManagementService.Mail mail) {
 
         String category = mail.getCategory();
-        LocalDate expirationDate = null;
         LocalDate deadline = mail.getDeadline();
         LocalDate extractedDate = mail.getMetadata();
 
         if (category == null || category.equals("Other")) {
-            return expirationDate;
+            return null;
         }
+
+        LocalDate expirationDate = null;
 
         if (category.equals("Meeting")) {
 
@@ -54,16 +55,14 @@ public class ExpirationCalculationService {
                 "\\b(?:\\d{1,2}-(?:January|February|March|April|May|June|July|August|September|October|November|December)(?:,)? \\d{4}|\\d{4}-\\d{2}-\\d{2}|\\d{2}-\\d{2}-\\d{4})\\b";
         Pattern pattern = Pattern.compile(patternString);
         Matcher matcher = pattern.matcher(subject);
-        LocalDate arrivalDate = null;
 
         if (matcher.find()) {
             String dateString = matcher.group(1);
 
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
-            arrivalDate = LocalDate.parse(dateString, formatter);
-
+            return LocalDate.parse(dateString, formatter); // directly returns extracted date from subject
         }
 
-        return arrivalDate;
+        return null;
     }
 }
