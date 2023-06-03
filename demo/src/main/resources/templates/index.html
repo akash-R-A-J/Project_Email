@@ -10,11 +10,11 @@
       body {
         background-color: rgba(176, 168, 165, 0.896);
       }
+
       /* Style for the heading */
       h1 {
         color: #333;
         text-align: center;
-        /* font-size:larger; */
         margin-top: 40px;
         margin-bottom: 20px;
       }
@@ -24,13 +24,11 @@
         width: 50%;
         height: 500px;
         margin: 20px auto;
-        /* border: 2px solid ; */
       }
 
       /* Style for the form inputs */
       label {
         display: block;
-        /* font-size: medium; */
         font-weight: bold;
         margin-bottom: 10px;
       }
@@ -41,6 +39,7 @@
         padding: 10px;
         border: 1px solid #ccc;
         border-radius: 4px;
+        cursor: rgba(241, 134, 4, 0.792);
         resize: vertical;
       }
 
@@ -90,20 +89,13 @@
   <body>
     <h1>Email Metadata Extraction</h1>
 
-    <!-- <form action="/process" method="post">
-      <label for="emailBody">Email Body:</label><br />
-      <textarea id="emailBody" name="emailBody" rows="4" cols="50"></textarea
-      ><br /><br />
-      <input type="submit" value="Submit" />
-    </form> -->
-
     <form action="/process" method="POST">
       <label for="header">Email Header:</label>
-      <input type="text" name="emailHeader" placeholder="Email Header" id="header"> <br>
-      <!-- <input type="text" id="header" name="header" required><br> -->
+      <input type="text" required name="emailHeader" placeholder="write subject here..." id="header"> <br>
       <label for="emailBody">Email Body:</label>
-      <textarea id="emailBody" name="emailBody" rows="5" required></textarea><br>
+      <textarea id="emailBody" name="emailBody" rows="5" placeholder="write mail body here..." required></textarea><br>
       <input type="submit" value="Extract Metadata">
    </form>
+
   </body>
 </html> 
