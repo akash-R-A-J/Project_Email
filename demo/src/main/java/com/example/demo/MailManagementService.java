@@ -9,11 +9,11 @@ public class MailManagementService {
     private MailCategorizationService mailCategory;
     private DeadlineExtractionService mailDeadline;
     private ExpirationCalculationService mailExpiration;
-    private List<MailManagementService.Mail> mails; // keeps track of scheduled
+    private static List<MailManagementService.Mail> mails = new ArrayList<>(); // keeps track of scheduled
     // mail to be deleted
 
     public MailManagementService() {
-        this.mails = new ArrayList<>();
+        // this.mails = new ArrayList<>();
         mailCategory = new MailCategorizationService();
         mailDeadline = new DeadlineExtractionService();
         mailExpiration = new ExpirationCalculationService();
@@ -58,6 +58,7 @@ public class MailManagementService {
 
         addMail(mail); // add mail to the mail list
 
+        System.out.println("1 :");
         displayDetails(mail); // display mail details
 
         return mail;
@@ -67,6 +68,7 @@ public class MailManagementService {
         mails.add(mail);
     }
 
+    // schedule mail deletion
     public String scheduleDeletion() {
 
         LocalDate currentDate = LocalDate.now();
@@ -74,7 +76,10 @@ public class MailManagementService {
 
         while (iterator.hasNext()) {
 
-            LocalDate expirationDate = iterator.next().getExpirationDate();
+            MailManagementService.Mail mail = iterator.next();
+            System.out.println("2 : ");
+            displayDetails(mail);
+            LocalDate expirationDate = mail.getExpirationDate();
 
             // this should be done in mail deletion service
             if (expirationDate != null) {
