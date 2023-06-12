@@ -27,6 +27,7 @@ public class DeadlineExtractionService {
             }
         }
 
+        System.out.println("deadline : " + deadline);
         return deadline;
     }
 

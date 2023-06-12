@@ -5,9 +5,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.servlet.ModelAndView;
+// import org.springframework.web.bind.annotation.ControllerAdvice;
+// import org.springframework.web.bind.annotation.ExceptionHandler;
+// import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class DemoController {
@@ -43,7 +43,7 @@ public class DemoController {
         if (mail.getMetadata() != null) {
             model.addAttribute("extractedData", mail.getMetadata());
         } else {
-            model.addAttribute("arrivalDate", "Not Found");
+            model.addAttribute("extractedData", "Not Found");
         }
 
         model.addAttribute("expirationDate", mail.getExpirationDate());
@@ -52,15 +52,15 @@ public class DemoController {
         return "result"; // Returns the name of the HTML template (result.html)
     }
 
-    // ERROR CONTROLLER
-    @ControllerAdvice
-    public class GlobalExceptionHandler {
+    // // ERROR CONTROLLER
+    // @ControllerAdvice
+    // public class GlobalExceptionHandler {
 
-        @ExceptionHandler(Exception.class)
-        public ModelAndView handleException(Exception ex) {
-            ModelAndView modelAndView = new ModelAndView("error");
-            modelAndView.addObject("errorMessage", "An unexpected error occurred.");
-            return modelAndView;
-        }
-    }
+    // @ExceptionHandler(Exception.class)
+    // public ModelAndView handleException(Exception ex) {
+    // ModelAndView modelAndView = new ModelAndView("error");
+    // modelAndView.addObject("errorMessage", "An unexpected error occurred.");
+    // return modelAndView;
+    // }
+    // }
 }

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Email Processing App</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <h1>Email Processing App</h1>
+    <form action="/process-email" method="post">
+      <label for="emailSubject">Email Subject:</label>
+      <input
+        type="text"
+        id="emailSubject"
+        name="emailSubject"
+        placeholder="write subject here..."
+        required
+      />
+
+      <label for="emailBody">Email Body:</label>
+      <textarea
+        id="emailBody"
+        name="emailBody"
+        placeholder="write your mail here..."
+        required
+      ></textarea>
+
+      <button type="submit">Process Email</button>
+    </form>
+  </body>
+</html>

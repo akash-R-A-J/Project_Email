@@ -46,21 +46,28 @@ public class ExpirationCalculationService {
             }
         }
 
+        System.out.println("Expiration date: " + expirationDate);
+
         return expirationDate;
     }
 
     public LocalDate extractDate(String subject) {
         String DATE_FORMAT = "yyyy-MM-dd";
-        String patternString = "\\s*(\\d{4}-\\d{2}-\\d{2})\\b|" +
-                "\\b(?:\\d{1,2}-(?:January|February|March|April|May|June|July|August|September|October|November|December)(?:,)? \\d{4}|\\d{4}-\\d{2}-\\d{2}|\\d{2}-\\d{2}-\\d{4})\\b";
+        String patternString = "\\b\\d{4}-\\d{2}-\\d{2}\\b|\\b\\d{1,2}-(?:January|February|March|April|May|June|July|August|September|October|November|December)(?:,)? \\d{4}\\b";
+
+        // String patternString =
+        // "\\b\\d{4}-\\d{2}-\\d{2}\\b|\\b\\d{1,2}-(?:January|February|March|April|May|June|July|August|September|October|November|December)(?:,)?
+        // \\d{4}\\b";
         Pattern pattern = Pattern.compile(patternString);
         Matcher matcher = pattern.matcher(subject);
 
         if (matcher.find()) {
-            String dateString = matcher.group(1);
+            String dateString = matcher.group();
 
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
-            return LocalDate.parse(dateString, formatter); // directly returns extracted date from subject
+            LocalDate extractedDate = LocalDate.parse(dateString, formatter);
+            System.out.println("Extracted Date : " + extractedDate);
+            return extractedDate;
         }
 
         return null;

@@ -77,8 +77,8 @@ public class MailManagementService {
         while (iterator.hasNext()) {
 
             MailManagementService.Mail mail = iterator.next();
-            System.out.println("2 : ");
-            displayDetails(mail);
+            // System.out.println("2 : ");
+            // displayDetails(mail);
             LocalDate expirationDate = mail.getExpirationDate();
 
             // this should be done in mail deletion service

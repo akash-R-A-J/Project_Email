@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class MailCategorizationService {
     // added some keywords
-    private static final String[] FORM_KEYWORDS = { "form", "response", "deadline", "today is the last day" };
+    private static final String[] FORM_KEYWORDS = { "form", "response", "today is the last day" }; // "deadline"
     private static final String[] MEETING_KEYWORDS = { "meeting", "appointment", "conference", "call", "schedule",
             "agenda", "invite", "arrange" };
     private static final String[] EXPIRATION_KEYWORDS = { "limited time offer", "expires on", "time-sensitive",
