@@ -69,9 +69,9 @@ public class MailManagementService {
     public class Mail {
         private String category;
         private LocalDate arrivalDate;
-        private LocalDate deadline;
-        private LocalDate extractedDate;
-        private LocalDate expirationDate;
+        private LocalDate deadline; // extracted
+        private LocalDate extractedDate; // other date but not deadline
+        private LocalDate expirationDate; // to be set based on above 4
 
         public void setCategory(String category) {
             this.category = category;

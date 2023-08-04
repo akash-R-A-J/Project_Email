@@ -48,12 +48,6 @@ public class MailArrivalDateService {
                     DateTimeFormatter.ofPattern("yy-MM-dd"),
                     DateTimeFormatter.ofPattern("dd/MMM/yyyy"),
                     DateTimeFormatter.ofPattern("dd-MMM-yyyy"),
-                    DateTimeFormatter.ofPattern("MMM dd,yyyy"),
-                    DateTimeFormatter.ofPattern("MMM-dd-yyyy"),
-                    DateTimeFormatter.ofPattern("MMM dd-yyyy"),
-                    DateTimeFormatter.ofPattern("MMM dd,yy"),
-                    DateTimeFormatter.ofPattern("MMM-dd-yy"),
-                    DateTimeFormatter.ofPattern("MMM dd-yy")
                     // Add more patterns as needed
             };
 

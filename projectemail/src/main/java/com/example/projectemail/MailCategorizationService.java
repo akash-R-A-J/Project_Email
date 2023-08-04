@@ -25,6 +25,7 @@ public class MailCategorizationService {
 
         for (String keyword : formKeywords) {
             if (subject.toLowerCase().contains(keyword) || body.toLowerCase().contains(keyword)) {
+                System.out.println(keyword);
                 return true;
             }
         }
@@ -56,6 +57,7 @@ public class MailCategorizationService {
         return false;
     }
 
+    // organize -> workshop
     private boolean isExpirationEmail(String subject, String body) {
         String[] expirationKeywords = { "expiration", "expiry", "due date", "valid until" };
 
