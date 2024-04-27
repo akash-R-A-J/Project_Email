@@ -18,6 +18,20 @@ AUED (Automatic Unwanted Email Deletion) is a Java-based project built on Spring
 - HTML
 - CSS
 
+## Modules
+
+AUED is structured into the following modules/components:
+
+1. **ProjectemailApplication.java**: The main class responsible for bootstrapping the Spring Boot application.
+2. **ProjectemailController.java**: Handles incoming HTTP requests and serves as the entry point for user interactions.
+3. **DeadlineExtractionService.java**: Extracts deadlines from email content and identifies emails with time-sensitive information.
+4. **ExpirationCalculation.java**: Calculates the expiration date of emails based on arrival date and deadlines.
+5. **MailArrivalDateService.java**: Retrieves the arrival date of emails from their metadata.
+6. **MailCategorizationService.java**: Categorizes emails based on their content, such as form submissions, meeting invitations, OTPs, or others.
+7. **MailManagementService.java**: Manages the process of fetching, categorizing, and removing unwanted emails from the user's inbox.
+
+Each module/component plays a specific role in the functionality of the AUED application, contributing to its overall automation and efficiency.
+
 ## Getting Started
 
 To run AUED locally, follow these steps:
