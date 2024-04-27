@@ -1,0 +1,75 @@
+# AUED (Automatic Unwanted Email Deletion)
+
+AUED (Automatic Unwanted Email Deletion) is a Java-based project built on Spring Boot that automates the deletion of unwanted emails from a user's Gmail account. It provides a user-friendly interface for managing and categorizing emails, with a focus on removing unnecessary clutter from the inbox.
+
+## Features
+
+- **Email Fetching**: Utilizes the Gmail API to fetch emails from the user's Gmail account securely.
+- **Categorization**: Automatically categorizes emails based on their content (e.g., form, meeting, OTP, or other).
+- **Deadline Detection**: Identifies emails with deadlines and calculates their expiration date.
+- **Unwanted Email Removal**: Deletes unwanted emails from the inbox if they meet certain criteria (e.g., expiration date).
+- **User Interface**: Includes a dashboard where users can view the percentage of unwanted emails and trigger the email fetching process.
+
+## Technology Stack
+
+- Java
+- Spring Boot
+- Maven
+- HTML
+- CSS
+
+## Getting Started
+
+To run AUED locally, follow these steps:
+
+1. Clone the repository: https://github.com/your-username/AUED.git (replace with the original one)
+
+2. Navigate to the project directory: cd AUED
+
+3. Build the project using Maven: mvn clean install
+
+4. Run the application: java -jar target/AUED-
+
+This command will start the Spring Boot application, and you should see the server running locally.
+
+Access the application through your web browser: http://localhost:8080
+
+
+You should now be able to access the AUED application in your web browser.
+
+## Configuration
+
+Before running the application, make sure to set up the following configuration:
+
+- **Gmail API Credentials**: Obtain OAuth 2.0 credentials from the Google Cloud Console and configure them in the application to authenticate with the Gmail API.
+- **Application Properties**: Customize application properties such as server port and database configuration in the `application.properties` file.
+
+## Usage
+
+1. Sign up or log in to the AUED application.
+2. Navigate to the dashboard to view the percentage of unwanted emails in your inbox.
+3. Trigger the email fetching process to categorize and remove unwanted emails.
+4. Monitor the application logs and dashboard to track the email deletion process.
+
+## Contributing
+
+Contributions to AUED are welcome! If you encounter any bugs, have feature requests, or want to contribute enhancements, please submit an issue or create a pull request.
+
+## License
+# This project is licensed under the [MIT License](LICENSE).
+
+## Acknowledgements
+
+AUED was created by Akash Raj as a project for personal learning.
+
+
+
+
+
+
+
+
+
+
+
+
